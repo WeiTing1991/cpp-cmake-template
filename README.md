@@ -28,3 +28,4 @@ cmake --build --preset=ninja-linux-build
 
 ### TODO:
 - [ ] add test with `google tests`
+- [ ] add github action with `build and formater`
