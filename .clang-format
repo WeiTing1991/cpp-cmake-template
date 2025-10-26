@@ -1,71 +1,67 @@
 # See Clang docs: http://clang.llvm.org/docs/ClangFormatStyleOptions.html
 BasedOnStyle: Google
 
-# Allow double brackets such as std::vector<std::vector<int>>.
-Standard: Cpp11
+# Modern C++ standard
+Standard: c++17
 
-# Indent 2 spaces at a time.
+# Indent 2 spaces at a time (Google default)
 IndentWidth: 2
 TabWidth: 2
 UseTab: Never
 
-# Keep lines under 100 columns long.
+# Google uses 80, but 100 is reasonable for modern code
 ColumnLimit: 100
 
-# Always break before braces
-BreakBeforeBraces: Custom
-BraceWrapping:
-  AfterCaseLabel: true
-  AfterClass: true
-  AfterControlStatement: true
-  AfterEnum: true
-  AfterFunction: true
-  AfterNamespace: true
-  AfterStruct: true
-  AfterUnion: true
-  BeforeCatch: true
-  BeforeElse: true
-  IndentBraces: false
-  SplitEmptyFunction: false
-  SplitEmptyRecord: false
-  SplitEmptyNamespace: false
+# Google style: opening braces on same line
+BreakBeforeBraces: Attach
 
-  # Keeps extern "C" blocks unindented.
-  AfterExternBlock: false
-
-InsertBraces: true
-
-# Indent case labels.
+# Indent case labels
 IndentCaseLabels: true
 
-# Left-align pointers and references
+# Left-align pointers and references (Google style)
 PointerAlignment: Left
 
-# ANGLE likes to align things as much as possible.
-AlignOperands: true
-AlignConsecutiveAssignments: true
+# Google style: minimal alignment
+AlignOperands: Align
+AlignConsecutiveAssignments: false
 
-# Use 2 space negative offset for access modifiers
-AccessModifierOffset: -2
+# Use 1 space negative offset for access modifiers (Google default)
+AccessModifierOffset: -1
 
-AllowShortFunctionsOnASingleLine: None
+# Allow short inline functions (Google style)
+AllowShortFunctionsOnASingleLine: Inline
 AllowShortLoopsOnASingleLine: false
 AllowShortCaseLabelsOnASingleLine: false
+AllowShortIfStatementsOnASingleLine: Never
 
-# Break after function
+# No breaking after return type
 AlwaysBreakAfterReturnType: None
 AlwaysBreakAfterDefinitionReturnType: None
 
-# multi-line function
+# Multi-line function parameters (more flexible than your old config)
 AlignAfterOpenBracket: Align
-BinPackParameters: false
-AllowAllParametersOfDeclarationOnNextLine: false
+BinPackParameters: true
+AllowAllParametersOfDeclarationOnNextLine: true
 
-# Useful for spacing out functions in classes
-KeepEmptyLinesAtTheStartOfBlocks: true
+# Google style spacing
+KeepEmptyLinesAtTheStartOfBlocks: false
 
-# Indent nested PP directives.
+# Indent nested PP directives
 IndentPPDirectives: AfterHash
 
-# Include blocks style
-IncludeBlocks: Preserve
+# Include organization (Google style)
+IncludeBlocks: Regroup
+SortIncludes: CaseSensitive
+
+# Modern C++ features
+AlwaysBreakTemplateDeclarations: Yes
+BreakConstructorInitializers: BeforeColon
+ConstructorInitializerIndentWidth: 4
+
+# Lambda formatting
+AllowShortLambdasOnASingleLine: All
+LambdaBodyIndentation: Signature
+
+# Namespace handling
+CompactNamespaces: false
+FixNamespaceComments: true

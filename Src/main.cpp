@@ -1,8 +1,8 @@
 #include <iostream>
+
 #include "module.h"
 
-int main()
-{
+int main() {
   std::cout << "=== Main Program ===" << std::endl;
 
   // Create an instance of Module from submodule
