@@ -1,0 +1,33 @@
+# Libs
+vcpkg_installed/
+.vcpkg-root
+
+# Build directories
+Build*/
+out/
+
+# IDE files
+.vs/
+*.user
+*.suo
+*.sln.docstates
+.vscode/settings.json
+.vscode/c_cpp_properties.json
+.idea/
+
+
+# Other common C++ ignores
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+
+# CMkae
+.cache
+
+# bin
+temp/
+
+# System
+.DS_Store

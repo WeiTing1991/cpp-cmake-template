@@ -1,0 +1,132 @@
+{
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "windows-base",
+      "hidden": true,
+      "generator": "Visual Studio 17 2022",
+      "toolset": "v142",
+      "architecture": "x64",
+      "binaryDir": "${sourceDir}/Build_VS",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CLANG_TIDY": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
+      }
+    },
+    {
+      "name": "vcpkg-base",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
+      "name": "ninja-windows-base",
+      "hidden": true,
+      "displayName": "Ninja build for Windows",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/Build_Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "cl.exe",
+        "CMAKE_CXX_COMPILER": "cl.exe",
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CLANG_TIDY": "OFF"
+      }
+    },
+    {
+      "name": "ninja-linux-base",
+      "hidden": true,
+      "displayName": "Ninja build for Linux",
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/Build_Ninja",
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Linux"
+      },
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "gcc",
+        "CMAKE_CXX_COMPILER": "g++",
+        "CMAKE_CXX_STANDARD": "20",
+        "CMAKE_CXX_STANDARD_REQUIRED": "ON",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CLANG_TIDY": "OFF"
+      }
+    },
+    {
+      "name": "ninja-windows",
+      "inherits": ["ninja-windows-base"],
+      "displayName": "Ninja Windows"
+    },
+    {
+      "name": "ninja-linux",
+      "inherits": ["ninja-linux-base"],
+      "displayName": "Ninja Linux"
+    },
+    {
+      "name": "windows-mvsc",
+      "inherits": ["windows-base"],
+      "displayName": "Visual Studio 2022"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "format",
+      "configurePreset": "ninja-windows",
+      "displayName": "Format code",
+      "description": "Format code using clang-format",
+      "targets": ["format"]
+    },
+    {
+      "name": "format-check",
+      "configurePreset": "ninja-windows",
+      "displayName": "Format code check",
+      "description": "Format check code using clang-format",
+      "targets": ["format-check"]
+    },
+    {
+      "name": "ninja-windows-build",
+      "configurePreset": "ninja-windows",
+      "displayName": "Build with Ninja (Windows)",
+      "nativeToolOptions": ["-j10"]
+    },
+    {
+      "name": "ninja-linux-build",
+      "configurePreset": "ninja-linux",
+      "displayName": "Build with Ninja (Linux)",
+      "nativeToolOptions": ["-j10"]
+    },
+    {
+      "name": "windows-vs-debug",
+      "configurePreset": "windows-mvsc",
+      "displayName": "Build with Visual Studio (Debug)",
+      "configuration": "Debug",
+      "nativeToolOptions": ["/maxcpucount:10"]
+    },
+    {
+      "name": "windows-vs-release",
+      "configurePreset": "windows-mvsc",
+      "displayName": "Build with Visual Studio (Release)",
+      "configuration": "Release",
+      "nativeToolOptions": ["/maxcpucount:10"]
+    }
+  ],
+  "testPresets": [],
+  "packagePresets": []
+}
