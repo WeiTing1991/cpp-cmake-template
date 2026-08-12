@@ -30,11 +30,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Conan
-        run: pip install conan
+      - name: Install Conan and CMake
+        run: pip install conan cmake
 
       - name: Detect Conan profile
         run: conan profile detect
+
+      - name: Fix MSVC cppstd
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $profilePath = conan profile path default
+          (Get-Content $profilePath) -replace 'compiler.cppstd=14', 'compiler.cppstd=23' | Set-Content $profilePath
 
       - name: Install dependencies
         run: >
