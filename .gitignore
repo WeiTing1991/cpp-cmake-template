@@ -1,33 +1,44 @@
-# Libs
-vcpkg_installed/
-.vcpkg-root
-
 # Build directories
-Build*/
-out/
+/build/
+build/
 
-# IDE files
-.vs/
-*.user
-*.suo
-*.sln.docstates
-.vscode/settings.json
-.vscode/c_cpp_properties.json
-.idea/
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+!CMakePresets.json
 
+# Conan generated files
+CMakeUserPresets.json
+ConanPresets.json
 
-# Other common C++ ignores
+# Compiled binaries and objects
+*.o
+*.a
+*.so
+*.dylib
+*.out
 *.obj
 *.exe
 *.dll
 *.lib
 *.pdb
 
-# CMkae
-.cache
-
-# bin
-temp/
+# IDE
+.vs/
+.idea/
+.vscode/settings.json
+.vscode/c_cpp_properties.json
+*.user
+*.suo
+*.sln.docstates
 
 # System
 .DS_Store
+
+# Other
+.cache
+temp/

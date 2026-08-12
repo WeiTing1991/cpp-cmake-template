@@ -1,31 +1,53 @@
 # Cpp CMake Project Template
 
-Simple CMake project template for Cpp, currently supported Window and Linux
+Simple CMake project template for C++, supports macOS, Linux, and Windows.
 
-## Prerequisite
-- CMake
-- gcc
-- ninja
-- Clang-format
+## Tech Stack
 
+- Package Manager: Conan
+- Language: C++23
+- Build: CMake 4+, Ninja
+- Static analysis & formatting: clang-format, clang-tidy
 
-#### MVSC
-```bash
-cmake --preset windows-mvsc
-cmake --build --preset=window-mvsc
-```
-#### Ninja on windows
+## Prerequisites
 
-```bash
-.generate_compile_commnads.bat
-```
+- CMake 4+
+- Conan 2+
+- Ninja
+- clang-format
+- clang-tidy (optional)
 
-#### Ninja on linux
-```bash
-cmake --preest ninja-linux
-cmake --build --preset=ninja-linux-build
+## Setup
+
+```sh
+brew install conan   # macOS
+conan profile detect
 ```
 
-### TODO:
-- [ ] add test with `google tests`
-- [ ] add github action with `build and formater`
+## Build
+
+```sh
+./build.sh           # Debug (default)
+./build.sh Release   # Release
+./build.sh --clean   # Clean build
+./build.sh --format  # Format code
+./build.sh --tidy    # Run clang-tidy
+```
+
+### Manual build
+
+```sh
+conan install . --output-folder=build/Debug --build=missing -s build_type=Debug
+cmake --preset Debug
+cmake --build --preset Debug
+```
+
+## Test
+
+```sh
+./run_test.sh
+```
+
+## TODO
+
+- [ ] add github action with build and formatter
