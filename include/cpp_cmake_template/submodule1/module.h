@@ -4,9 +4,8 @@
 #include <iostream>
 #include <string>
 
-class Module
-{
-public:
+class Module {
+ public:
   Module();
   ~Module();
 
@@ -14,7 +13,7 @@ public:
   std::string getMessage() const;
   int add(int x, int y) const;
 
-private:
+ private:
   std::string message;
 };
 

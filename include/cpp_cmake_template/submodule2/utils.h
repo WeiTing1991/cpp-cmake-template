@@ -4,7 +4,7 @@
 #include <string>
 
 class Utils {
-public:
+ public:
   static std::string version();
 };
 
