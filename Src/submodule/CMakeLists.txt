@@ -22,4 +22,4 @@ target_include_directories(submodule_lib PUBLIC
 )
 
 # Set C++ standard
-target_compile_features(submodule_lib PUBLIC cxx_std_20)
+target_compile_features(submodule_lib PUBLIC cxx_std_23)
