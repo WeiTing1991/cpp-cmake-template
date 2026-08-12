@@ -6,7 +6,8 @@ add_executable(template_tests
 
 target_link_libraries(template_tests
         PRIVATE
-        submodule_lib
+        submodule1_lib
+        submodule2_lib
         GTest::gtest_main
 )
 

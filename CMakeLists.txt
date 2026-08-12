@@ -12,7 +12,7 @@ add_compile_options(-Wall -Wextra -Werror)
 
 option(BUILD_TESTS "Build tests" ON)
 
-add_subdirectory(Src)
+add_subdirectory(src)
 
 if(BUILD_TESTS)
     enable_testing()

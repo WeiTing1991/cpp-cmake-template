@@ -17,14 +17,14 @@ if ($Clean) {
 
 if ($Format) {
     Write-Host "Formatting..."
-    Get-ChildItem -Recurse -Include *.cpp,*.h Src,tests | ForEach-Object {
+    Get-ChildItem -Recurse -Include *.cpp,*.h src,include,tests | ForEach-Object {
         clang-format -i $_.FullName
     }
 }
 
 if ($Tidy) {
     Write-Host "Running clang-tidy..."
-    Get-ChildItem -Recurse -Include *.cpp Src,tests | ForEach-Object {
+    Get-ChildItem -Recurse -Include *.cpp src,include,tests | ForEach-Object {
         clang-tidy --config-file=.clang-tidy -p "build/$Preset" $_.FullName
     }
 }

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "module.h"
+#include "cpp_cmake_template/submodule1/module.h"
 
 TEST(ModuleTest, Add) {
     Module module;

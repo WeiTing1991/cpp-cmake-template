@@ -1,4 +1,4 @@
-#include "module.h"
+#include "cpp_cmake_template/submodule1/module.h"
 
 Module::Module() : message("Module loaded successfully!") {}
 

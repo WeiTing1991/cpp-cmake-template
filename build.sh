@@ -25,12 +25,12 @@ fi
 
 if [ "$FORMAT" = true ]; then
     echo "Formatting..."
-    find Src tests -name "*.cpp" -o -name "*.h" | xargs clang-format -i
+    find src include tests -name "*.cpp" -o -name "*.h" | xargs clang-format -i
 fi
 
 if [ "$TIDY" = true ]; then
     echo "Running clang-tidy..."
-    find Src tests -name "*.cpp" | xargs clang-tidy \
+    find src include tests -name "*.cpp" | xargs clang-tidy \
         --config-file=.clang-tidy \
         -p build/$PRESET
 fi
