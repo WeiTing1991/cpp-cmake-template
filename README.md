@@ -1,6 +1,6 @@
 # Cpp CMake Project Template
 
-Simple CMake project template for C++, supports macOS, Linux, and Windows.
+Simple CMake project template for C++, supports macOS, and Windows.
 
 ## Tech Stack
 
@@ -9,7 +9,7 @@ Simple CMake project template for C++, supports macOS, Linux, and Windows.
 - Build: CMake 4+, Ninja
 - Static analysis & formatting: clang-format, clang-tidy
 
->!NOTE: For Package Manager use VCPKG, please refer to [cpp-cmake-template-vcpkg]()
+>!NOTE: For Package Manager use VCPKG, please refer to [cpp-cmake-template-vcpkg] branch()
 
 ## Prerequisites
 
