@@ -36,6 +36,7 @@ brew install conan
 pip install conan
 ```
 
+- Create a Conan profile for your platform if you haven't done so.
 ```sh
 conan profile detect
 ```
@@ -62,7 +63,7 @@ conan profile detect
 .\build.ps1 -Tidy            # Run clang-tidy
 ```
 
-### Pure CMake commands
+### CMake
 
 ```sh
 # Install dependencies
@@ -89,7 +90,7 @@ cmake --build --preset Debug
 .\run_test.ps1
 ```
 
-### Pure CMake commands
+### CMake
 
 ```sh
 cd build/Debug
