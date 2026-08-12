@@ -9,6 +9,8 @@ Simple CMake project template for C++, supports macOS, Linux, and Windows.
 - Build: CMake 4+, Ninja
 - Static analysis & formatting: clang-format, clang-tidy
 
+>!NOTE: For Package Manager use VCPKG, please refer to [cpp-cmake-template-vcpkg]()
+
 ## Prerequisites
 
 - CMake 4+
@@ -86,7 +88,3 @@ cmake --build --preset Debug
 cd build/Debug
 ctest --output-on-failure
 ```
-
-## TODO
-
-- [ ] add github action with build and formatter
