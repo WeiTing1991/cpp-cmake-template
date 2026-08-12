@@ -6,7 +6,7 @@
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
 
-Simple CMake project template for C++, supports macOS, and Windows.
+Simple CMake project template for C++, supports macOS, Linux, and Windows.
 
 ## Tech Stack
 
@@ -15,7 +15,8 @@ Simple CMake project template for C++, supports macOS, and Windows.
 - Build: CMake 4+, Ninja
 - Static analysis & formatting: clang-format, clang-tidy
 
->!NOTE: For Package Manager use VCPKG, please refer to [cpp-cmake-template-vcpkg] branch()
+> [!NOTE]
+> For Package Manager use VCPKG, please refer to the [feature/vcpkg](../../tree/feature/vcpkg) branch.
 
 ## Prerequisites
 

@@ -42,3 +42,4 @@ ConanPresets.json
 # Other
 .cache
 temp/
+docs/
