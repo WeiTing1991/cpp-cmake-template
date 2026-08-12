@@ -30,11 +30,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Conan and CMake
-        run: pip install conan cmake
+      - name: Install tools
+        run: pip install conan cmake ninja
 
       - name: Detect Conan profile
         run: conan profile detect
+
+      - name: Setup MSVC
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Fix MSVC cppstd
         if: runner.os == 'Windows'
@@ -43,12 +47,22 @@ jobs:
           $profilePath = conan profile path default
           (Get-Content $profilePath) -replace 'compiler.cppstd=14', 'compiler.cppstd=23' | Set-Content $profilePath
 
-      - name: Install dependencies
+      - name: Install dependencies (Unix)
+        if: runner.os != 'Windows'
         run: >
           conan install .
           --output-folder=build/${{ matrix.preset }}
           --build=missing
           -s build_type=${{ matrix.preset }}
+
+      - name: Install dependencies (Windows)
+        if: runner.os == 'Windows'
+        run: >
+          conan install .
+          --output-folder=build/${{ matrix.preset }}
+          --build=missing
+          -s build_type=${{ matrix.preset }}
+          -c tools.cmake.cmaketoolchain:generator=Ninja
 
       - name: Configure
         run: cmake --preset ${{ matrix.preset }}
