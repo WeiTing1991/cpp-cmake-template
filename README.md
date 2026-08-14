@@ -3,7 +3,7 @@
 ![C++23](https://img.shields.io/badge/C%2B%2B-23-blue?logo=cplusplus)
 ![CMake](https://img.shields.io/badge/CMake-4%2B-blue?logo=cmake)
 ![Conan](https://img.shields.io/badge/Conan-2-blue?logo=conan)
-![License](https://img.shields.io/badge/License-MIT-green)
+![License](https://img.shields.io/badge/License-Apache%202.0-green)
 ![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
 
 Simple CMake project template for C++, supports macOS, Linux, and Windows.
