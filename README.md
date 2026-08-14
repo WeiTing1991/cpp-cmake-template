@@ -96,3 +96,12 @@ cmake --build --preset Debug
 cd build/Debug
 ctest --output-on-failure
 ```
+
+## TODO
+
+- [ ] Sanitizers (ASan, UBSan, TSan)
+- [ ] Code coverage (gcov / llvm-cov)
+- [ ] Benchmarking (Google Benchmark)
+- [ ] Documentation (Doxygen)
+- [ ] Package export (CMake install / Conan create)
+- [ ] Pre-commit hooks
