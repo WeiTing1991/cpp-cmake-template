@@ -2,7 +2,7 @@
 
 ![C++23](https://img.shields.io/badge/C%2B%2B-23-blue?logo=cplusplus)
 ![CMake](https://img.shields.io/badge/CMake-4%2B-blue?logo=cmake)
-![Conan](https://img.shields.io/badge/Conan-2-blue?logo=conan)
+![vcpkg](https://img.shields.io/badge/vcpkg-manifest-blue)
 ![License](https://img.shields.io/badge/License-MIT-green)
 ![Platform](https://img.shields.io/badge/Platform-macOS%20%7C%20Linux%20%7C%20Windows-lightgrey)
 
@@ -10,18 +10,18 @@ Simple CMake project template for C++, supports macOS, Linux, and Windows.
 
 ## Tech Stack
 
-- Package Manager: Conan
+- Package Manager: vcpkg (manifest mode)
 - Language: C++23
 - Build: CMake 4+, Ninja
 - Static analysis & formatting: clang-format, clang-tidy
 
 > [!NOTE]
-> For Package Manager use VCPKG, please refer to the [feature/vcpkg](../../tree/feature/vcpkg) branch.
+> For Package Manager use Conan, please refer to the [main](../../tree/main) branch.
 
 ## Prerequisites
 
 - CMake 4+
-- Conan 2+
+- vcpkg
 - Ninja
 - clang-format
 - clang-tidy (optional)
@@ -30,15 +30,19 @@ Simple CMake project template for C++, supports macOS, Linux, and Windows.
 
 ```sh
 # macOS
-brew install conan
+brew install vcpkg
 
-# Windows
-pip install conan
+# Windows (scoop)
+scoop install vcpkg
+
+# Linux
+git clone https://github.com/microsoft/vcpkg.git ~/vcpkg
+~/vcpkg/bootstrap-vcpkg.sh
 ```
 
-- Create a Conan profile for your platform if you haven't done so.
+Make sure `VCPKG_ROOT` is set:
 ```sh
-conan profile detect
+export VCPKG_ROOT=$(vcpkg root)   # or path to your vcpkg install
 ```
 
 ## Build
@@ -66,10 +70,7 @@ conan profile detect
 ### CMake
 
 ```sh
-# Install dependencies
-conan install . --output-folder=build/Debug --build=missing -s build_type=Debug
-
-# Configure
+# Configure (vcpkg installs dependencies automatically)
 cmake --preset Debug
 
 # Build

@@ -11,9 +11,8 @@ Makefile
 !CMakeLists.txt
 !CMakePresets.json
 
-# Conan generated files
-CMakeUserPresets.json
-ConanPresets.json
+# vcpkg installed packages
+vcpkg_installed/
 
 # Compiled binaries and objects
 *.o

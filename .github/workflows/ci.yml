@@ -2,12 +2,24 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [feature/vcpkg]
   pull_request:
-    branches: [main]
+    branches: [feature/vcpkg]
 
 jobs:
+  format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check clang-format
+        run: |
+          find src include tests -name "*.cpp" -o -name "*.h" | \
+            xargs clang-format --dry-run --Werror
+
   build-linux:
+    needs: format-check
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -16,18 +28,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install tools
-        run: pip install conan cmake ninja
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
 
-      - name: Detect Conan profile
-        run: conan profile detect
-
-      - name: Install dependencies
-        run: >
-          conan install .
-          --output-folder=build/${{ matrix.preset }}
-          --build=missing
-          -s build_type=${{ matrix.preset }}
+      - name: Install CMake and Ninja
+        run: pip install cmake ninja
 
       - name: Configure
         run: cmake --preset ${{ matrix.preset }}
@@ -41,6 +46,7 @@ jobs:
         run: ctest --output-on-failure
 
   build-macos:
+    needs: format-check
     runs-on: macos-latest
     strategy:
       matrix:
@@ -49,18 +55,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install tools
-        run: pip install conan cmake ninja
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
 
-      - name: Detect Conan profile
-        run: conan profile detect
-
-      - name: Install dependencies
-        run: >
-          conan install .
-          --output-folder=build/${{ matrix.preset }}
-          --build=missing
-          -s build_type=${{ matrix.preset }}
+      - name: Install CMake and Ninja
+        run: pip install cmake ninja
 
       - name: Configure
         run: cmake --preset ${{ matrix.preset }}
@@ -73,18 +72,8 @@ jobs:
         working-directory: build/Debug
         run: ctest --output-on-failure
 
-  format-check:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Check clang-format
-        run: |
-          find src include tests -name "*.cpp" -o -name "*.h" | \
-            xargs clang-format --dry-run --Werror
-
   build-windows:
+    needs: format-check
     runs-on: windows-latest
     strategy:
       matrix:
@@ -93,28 +82,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install tools
-        run: pip install conan cmake ninja
-
       - name: Setup MSVC
         uses: ilammy/msvc-dev-cmd@v1
 
-      - name: Detect Conan profile
-        run: conan profile detect
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
 
-      - name: Fix MSVC cppstd
-        shell: pwsh
-        run: |
-          $profilePath = conan profile path default
-          (Get-Content $profilePath) -replace 'compiler.cppstd=14', 'compiler.cppstd=23' | Set-Content $profilePath
-
-      - name: Install dependencies
-        run: >
-          conan install .
-          --output-folder=build/${{ matrix.preset }}
-          --build=missing
-          -s build_type=${{ matrix.preset }}
-          -c tools.cmake.cmaketoolchain:generator=Ninja
+      - name: Install CMake and Ninja
+        run: pip install cmake ninja
 
       - name: Configure
         run: cmake --preset ${{ matrix.preset }}

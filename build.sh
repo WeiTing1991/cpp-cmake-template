@@ -15,12 +15,9 @@ for arg in "$@"; do
     esac
 done
 
-BUILD_TYPE=$([ "$PRESET" = "Release" ] && echo "Release" || echo "Debug")
-
 if [ "$CLEAN" = true ]; then
     echo "Cleaning build..."
     rm -rf build/
-    rm -f CMakeUserPresets.json ConanPresets.json conan_toolchain.cmake
 fi
 
 if [ "$FORMAT" = true ]; then
@@ -34,11 +31,6 @@ if [ "$TIDY" = true ]; then
         --config-file=.clang-tidy \
         -p build/$PRESET
 fi
-
-conan install . \
-  --output-folder=build/$PRESET \
-  --build=missing \
-  -s build_type=$BUILD_TYPE
 
 cmake --preset "$PRESET"
 cmake --build --preset "$PRESET"
