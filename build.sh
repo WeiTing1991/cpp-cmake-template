@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-PRESET="Debug"
+PRESET="debug"
 CLEAN=false
 FORMAT=false
 TIDY=false
@@ -11,7 +11,7 @@ for arg in "$@"; do
         --clean)  CLEAN=true ;;
         --format) FORMAT=true ;;
         --tidy)   TIDY=true ;;
-        Debug|Release) PRESET=$arg ;;
+        debug|release) PRESET=$arg ;;
     esac
 done
 

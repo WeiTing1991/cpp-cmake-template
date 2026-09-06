@@ -28,21 +28,28 @@ Simple CMake project template for C++, supports macOS, Linux, and Windows.
 
 ## Setup
 
+### macOS / Linux
+
 ```sh
-# macOS
-brew install vcpkg
-
-# Windows (scoop)
-scoop install vcpkg
-
-# Linux
 git clone https://github.com/microsoft/vcpkg.git ~/vcpkg
-~/vcpkg/bootstrap-vcpkg.sh
+cd vcpkg && ./bootstrap-vcpkg.sh
 ```
-
-Make sure `VCPKG_ROOT` is set:
+add into .bashrc or .zshrc
 ```sh
-export VCPKG_ROOT=$(vcpkg root)   # or path to your vcpkg install
+export VCPKG_ROOT=/path/to/vcpkg
+export PATH=$VCPKG_ROOT:$PATH
+```
+### Windows (PowerShell)
+
+```powershell
+git clone https://github.com/microsoft/vcpkg.git ~/vcpkg
+cd vcpkg; .\bootstrap-vcpkg.bat
+```
+add into .bashrc or .zshrc
+
+```powershell
+$env:VCPKG_ROOT = "C:\path\to\vcpkg"
+$env:PATH = "$env:VCPKG_ROOT;$env:PATH"
 ```
 
 ## Build
